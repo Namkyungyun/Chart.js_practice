@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="board">
+	<resultMap type="com.namkyung.chart.vo.ChartVO" id="chart">
+		<result property="bno" column="bno"/>
+		<result property="btitle" column="btitle"/>
+		<result property="bregdate" column="reg"/>
+		<result property="count" column="count"/>
+	</resultMap>
+
+	<select id="selectChart" resultMap="chart">
+	SELECT TO_CHAR(BREGDATE,'YYYY-MM-DD') AS REG,COUNT(*) AS COUNT
+	FROM BOARD
+	GROUP BY TO_CHAR(BREGDATE,'YYYY-MM-DD')
+	ORDER BY COUNT
+	
+	</select>
+</mapper>
